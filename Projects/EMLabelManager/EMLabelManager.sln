@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33328.57
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FC65038C-1B2F-41E1-A629-BED71D161FFF}") = "EMLabelManager (ISV) [Fleet Management]", "EMLabelManager\EMLabelManager.rnrproj", "{FD82AF0A-76EB-49C0-BB05-AE5E27D80BC1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FD82AF0A-76EB-49C0-BB05-AE5E27D80BC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD82AF0A-76EB-49C0-BB05-AE5E27D80BC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5AACB731-9C5E-465C-911D-E3197EB2948D}
+	EndGlobalSection
+EndGlobal
