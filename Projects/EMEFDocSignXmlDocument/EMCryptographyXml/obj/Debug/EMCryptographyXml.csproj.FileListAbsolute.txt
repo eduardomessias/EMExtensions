@@ -1,0 +1,6 @@
+C:\AOSService\PackagesLocalDirectory\EMExtensions\Projects\EMEFDocSignXmlDocument\EMCryptographyXml\bin\Debug\EMCryptographyXml.dll
+C:\AOSService\PackagesLocalDirectory\EMExtensions\Projects\EMEFDocSignXmlDocument\EMCryptographyXml\bin\Debug\EMCryptographyXml.pdb
+C:\AOSService\PackagesLocalDirectory\EMExtensions\Projects\EMEFDocSignXmlDocument\EMCryptographyXml\obj\Debug\EMCryptographyXml.csproj.AssemblyReference.cache
+C:\AOSService\PackagesLocalDirectory\EMExtensions\Projects\EMEFDocSignXmlDocument\EMCryptographyXml\obj\Debug\EMCryptographyXml.csproj.CoreCompileInputs.cache
+C:\AOSService\PackagesLocalDirectory\EMExtensions\Projects\EMEFDocSignXmlDocument\EMCryptographyXml\obj\Debug\EMCryptographyXml.dll
+C:\AOSService\PackagesLocalDirectory\EMExtensions\Projects\EMEFDocSignXmlDocument\EMCryptographyXml\obj\Debug\EMCryptographyXml.pdb

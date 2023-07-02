@@ -3,11 +3,38 @@
 	<Name>EMLabelController</Name>
 	<SourceCode>
 		<Declaration><![CDATA[
-internal final class EMLabelController
+/// <summary>
+/// Label controller, responsible for calling the label handler class
+/// </summary>
+internal final class EMLabelController extends SysOperationServiceController
 {
 }
-
 ]]></Declaration>
-		<Methods />
+		<Methods>
+			<Method>
+				<Name>construct</Name>
+				<Source><![CDATA[
+    public static EMLabelController construct()
+    {
+        return new EMLabelController();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        EMLabelController controller = EMLabelController::construct();
+        controller.parmClassName(classStr(EMLabelService));
+        controller.parmMethodName(methodStr(EMLabelService, run));
+        controller.parmExecutionMode(SysOperationExecutionMode::Synchronous);
+        controller.startOperation();
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
 	</SourceCode>
 </AxClass>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>EFDocSignXmlDocument_BR_EMExtension</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+class EFDocSignXmlDocument_BR_EMExtension extends EFDocSignXmlDocument_BR
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>signDocumentWithId</Name>
+				<Source><![CDATA[
+    public str signDocumentWithId(KeyVaultCertificateRef _keyVaultCertificateRef,
+                            DigitalCertificateSubject _certificateSubject, 
+                            XmlElement _xmlDoc, 
+                            str _elementToBeSignedName)
+    {
+        new InteropPermission(InteropKind::ClrInterop).assert();
+
+        this.initCertificate(_keyVaultCertificateRef, _certificateSubject);
+
+        System.Xml.XmlDocument xmlDocument = new System.Xml.XmlDocument();
+        xmlDocument.LoadXml(_xmlDoc.toString());
+
+        EMCryptographyXml.SignedXmlWithId signedXml = new System.Security.Cryptography.Xml.SignedXml(xmlDocument);
+        System.Security.Cryptography.Xml.Reference reference = new System.Security.Cryptography.Xml.Reference();
+
+        System.Xml.XmlNodeList xmlNodeList = xmlDocument.GetElementsByTagName(_elementToBeSignedName);
+        System.Xml.XmlNode nodeToBeSigned = xmlNodeList.Item(0);
+
+        System.Xml.XmlAttributeCollection xmlAttributeCollection = nodeToBeSigned.get_Attributes();
+        int attributeCount = xmlAttributeCollection.get_Count();
+
+        int attributeIndex;
+        for (attributeIndex = 0; attributeIndex < attributeCount; attributeIndex++)
+        {
+            System.Xml.XmlNode eachAttribute = xmlAttributeCollection.Item(attributeIndex);
+            str attributeName = eachAttribute.get_Name();
+            if (attributeName == 'Id')
+            {
+                str attributeInnerText = eachAttribute.get_InnerText();
+                reference.set_Uri('#' + attributeInnerText);
+                break;
+            }
+        }
+
+        System.Security.Cryptography.AsymmetricAlgorithm key = this.getAsymmetricAlgorithm();
+        signedXml.set_SigningKey(key);
+
+        System.Security.Cryptography.Xml.SignedInfo signedInfo = signedXml.get_SignedInfo();
+
+        if (useRsaSha256)
+        {
+            signedInfo.set_SignatureMethod(@'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256');
+        }
+        else
+        {
+            signedInfo.set_SignatureMethod("http://www.w3.org/2000/09/xmldsig#rsa-sha1");
+        }
+
+        reference.AddTransform(new System.Security.Cryptography.Xml.XmlDsigEnvelopedSignatureTransform());
+        reference.AddTransform(new System.Security.Cryptography.Xml.XmlDsigC14NTransform());
+
+        if (useRsaSha256)
+        {
+            reference.set_DigestMethod(@"http://www.w3.org/2001/04/xmlenc#sha256");
+        }
+        else
+        {
+            reference.set_DigestMethod("http://www.w3.org/2000/09/xmldsig#sha1");
+        }
+
+        signedXml.AddReference(reference);
+
+        signedXml.set_KeyInfo(this.getKeyInfo());
+        signedXml.ComputeSignature();
+
+        System.Xml.XmlElement xmlDigitalSignature = signedXml.GetXml();
+
+        System.Xml.XmlElement xmlDocumentElement = xmlDocument.get_DocumentElement();
+        xmlDocumentElement.AppendChild(xmlDocument.ImportNode(xmlDigitalSignature, true));
+
+        str signedDocXml = xmlDocumentElement.get_OuterXml();
+
+        CodeAccessPermission::revertAssert();
+
+        return signedDocXml;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>construct</Name>
+				<Source><![CDATA[
+    public static EFDocSignXmlDocument_BR_EMExtension construct()
+    {
+        return new EFDocSignXmlDocument_BR_EMExtension();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>upgradeCsp</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Enforces the CSP provider to be Microsoft Enhanced RSA and AES Cryptographic Provider (provider type PROV_RSA_AES, 24).
+    /// </summary>
+    /// <param name="_currentKey">
+    /// The key to be upgraded.
+    /// </param>
+    /// <returns>
+    /// The new key as System.Security.Cryptography.RSACryptoServiceProvider.
+    /// </returns>
+    private static System.Security.Cryptography.AsymmetricAlgorithm upgradeCsp(System.Security.Cryptography.AsymmetricAlgorithm _currentKey)
+    {
+        const System.Security.Cryptography.CspProviderFlags useExistingKey = System.Security.Cryptography.CspProviderFlags::UseExistingKey;
+        const System.Security.Cryptography.CspProviderFlags useMachineKeyStore = System.Security.Cryptography.CspProviderFlags::UseMachineKeyStore;
+
+        System.Int32 PROV_RSA_AES = 24;
+
+        System.Security.Cryptography.CspParameters cspParameters = new System.Security.Cryptography.CspParameters(PROV_RSA_AES);
+
+        System.Type cspParametersType = System.Type::GetType('System.Security.Cryptography.CspParameters');
+
+        // bitwise OR is not supported in X++ for .Net enums
+        System.Security.Cryptography.CspProviderFlags bitwiseOR(
+            System.Security.Cryptography.CspProviderFlags _flags1,
+            System.Security.Cryptography.CspProviderFlags _flags2)
+        {
+            // cast .Net enum to .Net Int32
+            System.Int32 flags1int = System.Convert::ToInt32(_flags1);
+            System.Int32 flags2int = System.Convert::ToInt32(_flags2);
+
+            // cast .Net Int32 to AX int
+            int flags1AXint = flags1int;
+            int flags2AXint = flags2int;
+
+            // no explicit cast is needed from int to .Net Int32
+            System.Int32 retAsInt = flags1AXint + flags2AXint;
+
+            return System.Enum::ToObject(_flags1.GetType(), retAsInt);
+        }
+
+        System.Security.Cryptography.RSACryptoServiceProvider currentKey = _currentKey as System.Security.Cryptography.RSACryptoServiceProvider;
+        if (!currentKey)
+            return _currentKey;
+
+        System.Security.Cryptography.CspKeyContainerInfo cspKeyContainerInfo = currentKey.get_CspKeyContainerInfo();
+
+        System.Reflection.FieldInfo fieldInfo = cspParametersType.GetField('KeyContainerName');
+        fieldInfo.SetValue(cspParameters, cspKeyContainerInfo.get_KeyContainerName());
+
+        fieldInfo = cspParametersType.GetField('KeyNumber');
+        fieldInfo.SetValue(cspParameters, cspKeyContainerInfo.get_KeyNumber());
+
+        if (cspKeyContainerInfo.get_MachineKeyStore())
+        {
+            cspParameters.set_Flags(bitwiseOR(useExistingKey, useMachineKeyStore));
+        }
+        else
+        {
+            cspParameters.set_Flags(useExistingKey);
+        }
+
+        if (cspKeyContainerInfo.get_ProviderType() == PROV_RSA_AES)
+        {
+            fieldInfo = cspParametersType.GetField('ProviderName');
+            fieldInfo.SetValue(cspParameters, cspKeyContainerInfo.get_ProviderName());
+        }
+
+        return new System.Security.Cryptography.RSACryptoServiceProvider(cspParameters);
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

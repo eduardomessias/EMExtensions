@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>EMLabelContract</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+/// <summary>
+/// Label contract, responsible for defining the criteria of the operation
+/// </summary>
+[DataContract]
+internal final class EMLabelContract
+{
+    
+}
+]]></Declaration>
+		<Methods />
+	</SourceCode>
+</AxClass>

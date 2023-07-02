@@ -15,6 +15,7 @@
     <Name>EMLabelManager</Name>
     <RootNamespace>EMLabelManager</RootNamespace>
     <StartupType>Class</StartupType>
+    <StartupObject>EMLabelTest</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <Configuration>Debug</Configuration>
@@ -35,10 +36,25 @@
     <Folder Include="Classes\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AxClass\EMLabelContract">
+      <SubType>Content</SubType>
+      <Name>EMLabelContract</Name>
+      <Link>Classes\EMLabelContract</Link>
+    </Content>
     <Content Include="AxClass\EMLabelController">
       <SubType>Content</SubType>
       <Name>EMLabelController</Name>
       <Link>Classes\EMLabelController</Link>
+    </Content>
+    <Content Include="AxClass\EMLabelService">
+      <SubType>Content</SubType>
+      <Name>EMLabelService</Name>
+      <Link>Classes\EMLabelService</Link>
+    </Content>
+    <Content Include="AxClass\EMLabelTest">
+      <SubType>Content</SubType>
+      <Name>EMLabelTest</Name>
+      <Link>Classes\EMLabelTest</Link>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />

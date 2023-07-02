@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33328.57
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FC65038C-1B2F-41E1-A629-BED71D161FFF}") = "EMEFDocSignXmlDocument (CUS) [EMExtensions]", "EMEFDocSignXmlDocument\EMEFDocSignXmlDocument.rnrproj", "{C0D8513B-62AB-4EFB-B8B1-4CFD452AB065}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMCryptographyXml", "EMCryptographyXml\EMCryptographyXml.csproj", "{B8F4ED79-C6B1-44DE-8F69-3B69CF579169}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C0D8513B-62AB-4EFB-B8B1-4CFD452AB065}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0D8513B-62AB-4EFB-B8B1-4CFD452AB065}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0D8513B-62AB-4EFB-B8B1-4CFD452AB065}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0D8513B-62AB-4EFB-B8B1-4CFD452AB065}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{B8F4ED79-C6B1-44DE-8F69-3B69CF579169}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8F4ED79-C6B1-44DE-8F69-3B69CF579169}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8F4ED79-C6B1-44DE-8F69-3B69CF579169}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8F4ED79-C6B1-44DE-8F69-3B69CF579169}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C4A806E0-DF65-4CB5-A528-0B31AAEF11F6}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,8 @@
+C:\AOSService\PackagesLocalDirectory\EMExtensions\Projects\EMLabelCreator\EMLabelCreator\bin\Debug\EMLabelCreator.dll
+C:\AOSService\PackagesLocalDirectory\EMExtensions\Projects\EMLabelCreator\EMLabelCreator\bin\Debug\EMLabelCreator.pdb
+C:\AOSService\PackagesLocalDirectory\EMExtensions\Projects\EMLabelCreator\EMLabelCreator\obj\Debug\EMLabelCreator.csproj.AssemblyReference.cache
+C:\AOSService\PackagesLocalDirectory\EMExtensions\Projects\EMLabelCreator\EMLabelCreator\obj\Debug\EMLabelCreator.AddinResources.resources
+C:\AOSService\PackagesLocalDirectory\EMExtensions\Projects\EMLabelCreator\EMLabelCreator\obj\Debug\EMLabelCreator.csproj.GenerateResource.cache
+C:\AOSService\PackagesLocalDirectory\EMExtensions\Projects\EMLabelCreator\EMLabelCreator\obj\Debug\EMLabelCreator.csproj.CoreCompileInputs.cache
+C:\AOSService\PackagesLocalDirectory\EMExtensions\Projects\EMLabelCreator\EMLabelCreator\obj\Debug\EMLabelCreator.dll
+C:\AOSService\PackagesLocalDirectory\EMExtensions\Projects\EMLabelCreator\EMLabelCreator\obj\Debug\EMLabelCreator.pdb
